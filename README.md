@@ -6,4 +6,4 @@ Ball ball dalaos help me out!!!
 
 (He Big Expensive & Guo Big Old are the best!!!)
 
-![SJD_IS_THE_MOST_VEGETABLE](https://raw.githubusercontent.com/SJD-WillCarryUs/Elevator/master/SJD_IS_TEH_MOST_VEGETABLE.jpg?token=AL3JURRQEX3PCBODNZBOFU262XLDY)
+![SJD_IS_THE_MOST_VEGETABLE](http://47.101.205.217/SJD_IS_THE_MOST_VEGETABLE.jpg)

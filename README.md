@@ -1,6 +1,6 @@
 # README
 
-This is the first trash version of elevator. 
+This is the first TRASH version of elevator. 
 
 Ball ball dalaos help me out!!!
 

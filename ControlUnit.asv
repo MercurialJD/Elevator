@@ -48,8 +48,7 @@ classdef ControlUnit
             elseif(obj.ele2.getCurrentFloor() > floor && obj.ele2.getPreDirection() == "Down")
                 obj.ele2.addDesFloor(floor);
                 return;
-            elseif((abs(obj.ele2.getCurrentFloor()-floor)<abs(obj.ele1.getCurrentFloor()-floor)) &&...
-                   (obj.ele2.getPreDirection()~=direction))
+            elseif(abs(obj.ele2.getCurrentFloor()-floor)<abs(obj.ele1.getCurrentFloor()-floor))
                 obj.ele2.addDesFloor(floor);
                 return;
             else

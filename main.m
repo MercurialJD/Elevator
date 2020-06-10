@@ -11,6 +11,8 @@ controller = ControlUnit;
 % Apps
 ele1_app = elevator1;
 ele2_app = elevator2;
+ele1_mod = ele1_model;
+ele2_mod = ele2_model;
 flr1_app = floor1;
 flr2_app = floor2;
 flr3_app = floor3;
@@ -27,12 +29,14 @@ ele1.app = ele1_app;
 ele1.controller = controller;
 % Setups for ele1_app
 ele1_app.inside_panel = ele1;
+ele1.model = ele1_mod;
 
 % Setups for ele2
 ele2.app = ele2_app;
 ele2.controller = controller;
 % Setups for ele2_app
 ele2_app.inside_panel = ele2;
+ele2.model = ele2_mod;
 
 % Setups for flr1
 flr1.app = flr1_app;

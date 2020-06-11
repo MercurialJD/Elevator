@@ -68,59 +68,65 @@ classdef InsidePanel < handle
         end
         
         function [] = updateDisp(obj)
-            % inner
+            % Inner app disp update
             obj.app.CurrentFloor.Value = mat2str(obj.current_floor);
             obj.app.Direction.Value = obj.direction;
             obj.app.DoorState.Value = obj.door_state;
-            if obj.direction == "Stationary"    % Disable the checkbox since meaningless
+            
+            % Should not check current floor, meaningless
+            if obj.direction == "Stationary"
                 switch obj.current_floor
                     case 1
                         obj.app.Floor1Check.Value = false;
-                        obj.app.Floor1Check.Enable = false;
                     case 2
                         obj.app.Floor2Check.Value = false;
-                        obj.app.Floor2Check.Enable = false;
                     case 3
                         obj.app.Floor3Check.Value = false;
-                        obj.app.Floor3Check.Enable = false;
-                end
-            else                                % Enable the checkbox since is moving to next floor
-                switch obj.current_floor
-                    case 1
-                        obj.app.Floor1Check.Enable = true;
-                    case 2
-                        obj.app.Floor2Check.Enable = true;
-                    case 3
-                        obj.app.Floor3Check.Enable = true;
                 end
             end
             
-            % Update model
+            % Enable corresponding checkbox
             switch obj.current_floor
                 case 1
-                    obj.model.image.Layout.Row = 3;
+                    obj.app.Floor1Check.Enable = false;
+                    obj.app.Floor2Check.Enable = true;
+                    obj.app.Floor3Check.Enable = true;
+                case 2
+                    obj.app.Floor1Check.Enable = true;
+                    obj.app.Floor2Check.Enable = false;
+                    obj.app.Floor3Check.Enable = true;
+                case 3
+                    obj.app.Floor1Check.Enable = true;
+                    obj.app.Floor2Check.Enable = true;
+                    obj.app.Floor3Check.Enable = false;
+            end
+            
+            % Model disp update
+            switch obj.current_floor
+                case 1
+                    obj.model.Image.Layout.Row = 3;     % Upside down
                     if obj.door_state == "Closed"
-                        obj.model.image.ImageSource = 'ele_closed.jpg';
+                        obj.model.Image.ImageSource = 'ele_closed.jpg';
                     else
-                        obj.model.image.ImageSource = 'ele_opened.jpg';
+                        obj.model.Image.ImageSource = 'ele_opened.jpg';
                     end
                 case 2
-                    obj.model.image.Layout.Row = 2;
+                    obj.model.Image.Layout.Row = 2;     % Upside down
                     if obj.door_state == "Closed"
-                        obj.model.image.ImageSource = 'ele_closed.jpg';
+                        obj.model.Image.ImageSource = 'ele_closed.jpg';
                     else
-                        obj.model.image.ImageSource = 'ele_opened.jpg';
+                        obj.model.Image.ImageSource = 'ele_opened.jpg';
                     end
                 case 3
-                    obj.model.image.Layout.Row = 1;
+                    obj.model.Image.Layout.Row = 1;     % Upside down
                     if obj.door_state == "Closed"
-                        obj.model.image.ImageSource = 'ele_closed.jpg';
+                        obj.model.Image.ImageSource = 'ele_closed.jpg';
                     else
-                        obj.model.image.ImageSource = 'ele_opened.jpg';
+                        obj.model.Image.ImageSource = 'ele_opened.jpg';
                     end
             end
             
-            % outer
+            % Outer app update
             obj.controller.updateOutDisp();
         end
         
@@ -135,15 +141,17 @@ classdef InsidePanel < handle
         end
         
         function [] = checkRoute(obj)
-            if obj.route(obj.current_floor) == 1    % If the outside panel of this floor is checked
+            % If the outside panel of this floor is checked
+            if obj.route(obj.current_floor) == 1
                 obj.delDesFloor(obj.current_floor);
                 stop(obj.door_timer);
                 obj.openDoor();
                 obj.door_timer = timer('StartDelay', obj.door_time, 'TimerFcn', @obj.closeDoor);
                 start(obj.door_timer);
             end
-            if obj.current_floor == 1   % If currently located on the first floor,
-                                        % just check higher two floors
+            
+            if obj.current_floor == 1       % If currently located on the first floor,
+                                            % just check higher two floors
                 for i = 2:3
                     if obj.route(i) == 1
                         obj.goUp();
@@ -195,10 +203,17 @@ classdef InsidePanel < handle
             if(obj.getDoorState) ~= "Closed"
                 return;
             end
+            
+            % Shut the door when moving
+            obj.app.OpenDoor.Enable = false;
+            
+            % Set app display
             obj.pre_direction = "Up";
             obj.direction = "Up";
             disp("GOUP!");
             obj.updateDisp();
+            
+            % Renew move timer
             stop(obj.move_timer);
             obj.move_timer = timer('StartDelay', obj.move_time, 'TimerFcn', @obj.arrive);
             start(obj.move_timer);
@@ -209,10 +224,17 @@ classdef InsidePanel < handle
             if(obj.getDoorState) ~= "Closed"
                 return;
             end
+            
+            % Shut the door when moving
+            obj.app.OpenDoor.Enable = false;
+            
+            % Set app display
             obj.pre_direction = "Down";
             obj.direction = "Down";
             disp("GODOWN!");
             obj.updateDisp();
+            
+            % Renew move timer
             stop(obj.move_timer);
             obj.move_timer = timer('StartDelay', obj.move_time, 'TimerFcn', @obj.arrive);
             start(obj.move_timer);
@@ -247,9 +269,15 @@ classdef InsidePanel < handle
 
             % If current_floor is checked, stop; Ohterwise, move
             if obj.route(obj.current_floor) == 1
+                % Enable open door if stationary
+                obj.app.OpenDoor.Enable = true;
+                
+                % Clear current floor from the route
                 obj.route(obj.current_floor) = 0;
                 obj.direction = "Stationary";
                 obj.openDoor();
+                
+                % Renew door timer
                 stop(obj.door_timer);
                 obj.door_timer = timer('StartDelay', obj.door_time, 'TimerFcn', @obj.closeDoor);
                 start(obj.door_timer);

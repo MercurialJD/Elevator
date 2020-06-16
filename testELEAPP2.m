@@ -1,4 +1,4 @@
-classdef testELEAPP < matlab.uitest.TestCase
+classdef testELEAPP2 < matlab.uitest.TestCase
     properties
        ele1_app
        ele2_app
@@ -68,18 +68,15 @@ classdef testELEAPP < matlab.uitest.TestCase
             % Input: Choose appetizer 1 and press select button
             % Expected Output: OrderList has appetizer 1's name, amount and
             % unit price
+            
+
+            %testcase 2
             testCase.press(testCase.flr1_app.UpButton);            
-            pause(2);           
-            testCase.press(testCase.ele1_app.OpenDoor);
-            pause(2);            
-            testCase.press(testCase.ele1_app.CloseDoor);
             pause(2);
             testCase.press(testCase.ele1_app.Floor3Check);      
-            pause(4);
-            testCase.press(testCase.flr2_app.DownButton);       
-            pause(2);    
-            testCase.press(testCase.ele2_app.Floor1Check);
-
+            pause(1);
+            testCase.press(testCase.ele1_app.Floor3Check);      
+            pause(2);
             
            
 %             testCase.choose(testCase.app.appetizer1Node);

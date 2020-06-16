@@ -64,28 +64,14 @@ classdef testELEAPP2 < matlab.uitest.TestCase
     end
     methods (Test)
         function test_SelectButtonPushed(testCase)
-            % State: No order for the table and no dish selected
-            % Input: Choose appetizer 1 and press select button
-            % Expected Output: OrderList has appetizer 1's name, amount and
-            % unit price
-            
-
-            %testcase 2
+            % testcase 2
+            % cancel selected 1-3 ,stop at 2
             testCase.press(testCase.flr1_app.UpButton);            
             pause(2);
             testCase.press(testCase.ele1_app.Floor3Check);      
             pause(1);
             testCase.press(testCase.ele1_app.Floor3Check);      
             pause(2);
-            
-           
-%             testCase.choose(testCase.app.appetizer1Node);
-%             pause(0.5)
-%             testCase.press(testCase.app.SelectButton);
-%             pause(0.5)
-%             testCase.verifyEqual(testCase.app.OrderList.Data{1},testCase.app.appetizer1Node.Text);
-%              testCase.verifyEqual(testCase.app.OrderList.Data{2},1);
-%               testCase.verifyEqual(testCase.app.OrderList.Data{3},testCase.app.appetizer1Node.NodeData);
         end
         
     end

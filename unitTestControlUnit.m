@@ -219,8 +219,7 @@ classdef unitTestControlUnit < matlab.unittest.TestCase
             controller.ele1.route(floor) = 0;
             controller.ele2.route(floor) = 0;
             controller.ele1.pre_direction = "Stationary";
-            controller.ele2.pre_direction = "Stationary";
-            
+            controller.ele2.pre_direction = "Stationary";           
             direction = "Up";
             
             
@@ -234,8 +233,7 @@ classdef unitTestControlUnit < matlab.unittest.TestCase
             controller.ele1.route(floor) = 0;
             controller.ele2.route(floor) = 0;
             controller.ele1.pre_direction = "Stationary";
-            controller.ele2.pre_direction = "Stationary";
-            
+            controller.ele2.pre_direction = "Stationary"; 
             direction = "Up";
             
             

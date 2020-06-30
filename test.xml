@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd'><nta><declaration>// Place global declarations here.
+//chan e1move, e2move</declaration><template><name x="5" y="5">Template</name><declaration>// Place local declarations here.
+
+int currentFloor = 1;
+
+int target = 3;
+
+int judge(){
+    if (target &gt; currentFloor)
+	return 1; //up
+    else if  (target &lt; currentFloor)
+        return 2;// down
+    else
+        return 0;//stop
+         
+}
+
+void move(int target,int dir){
+    if (dir == 1)
+        currentFloor += 1; 
+    if (dir == 2)
+        currentFloor -= 1; 
+    	
+}
+
+
+
+</declaration><location id="id0" x="-624" y="-400"><name x="-634" y="-430">down</name></location><location id="id1" x="-472" y="-400"><name x="-482" y="-430">up</name></location><location id="id2" x="-552" y="-304"><name x="-562" y="-334">stop</name></location><init ref="id2"/><transition><source ref="id1"/><target ref="id2"/><label kind="assignment" x="-496" y="-352">move(target,1)</label><nail x="-448" y="-360"/></transition><transition><source ref="id0"/><target ref="id2"/><label kind="assignment" x="-648" y="-352">move(target,2)</label><nail x="-640" y="-336"/></transition><transition><source ref="id2"/><target ref="id0"/><label kind="guard" x="-648" y="-382">judge()==2</label><nail x="-560" y="-312"/></transition><transition><source ref="id2"/><target ref="id1"/><label kind="guard" x="-544" y="-384">judge()==1</label></transition></template><system>// Place template instantiations here.
+Process = Template();
+
+// List one or more processes to be composed into a system.
+system Process;</system></nta>

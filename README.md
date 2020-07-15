@@ -1,9 +1,32 @@
 # README
 
-This is the first TRASH version of elevator. 
+This is a model of elevator implemented by MATLAB (Version: R2019B).
 
-Ball ball dalaos help me out!!!
+- You can run the model by run `main.m`.
 
-(He Big Expensive & Guo Big Old are the best!!!)
+- Basic logics are implemented within `.m` files.
 
-![SJD_IS_THE_MOST_VEGETABLE](http://47.101.205.217/SJD_IS_THE_MOST_VEGETABLE.jpg)
+- `.mlapp` files are implemented by AppDesigner and provide UI interfaces
+
+- Three unit test files are included: 
+
+  - `unitTestControlUnit.m`
+
+  - `unitTestInsidePanel.m`
+
+  - `unitTestOutsidePanel.m`
+
+    Those files test some of the major functions.
+
+- Four UI test files are included: 
+
+  - `testELEAPP1.m`
+
+  - `testELEAPP2.m`
+
+  - `testELEAPP3.m`
+
+  - `testELEAPP4.m`
+
+    Those files test some of the major use cases.
+

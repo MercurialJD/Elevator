@@ -2,7 +2,7 @@
 
 This repo contains 1/3 part of the projects done during the course Software Engineering (CS132) Spring 2020 at Shanghaitech University.
 
-You may refer to all projects @SJD-WillCarryUs (https://github.com/SJD-WillCarryUs).
+You may refer to all projects @[SJD-WillCarryUs](https://github.com/SJD-WillCarryUs).
 
 This is a model of elevator implemented by MATLAB (Version: R2019B).
 
